@@ -1,0 +1,14 @@
+.card-list-swimlane {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    margin: 10px auto;
+    border: 1px solid black;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 640px) {
+    .card-list-swimlane {
+        width: 62.5%;
+    }
+}

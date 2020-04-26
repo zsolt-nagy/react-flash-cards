@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App apiUrl="https://restcountries.eu/rest/v2/all" />
   </React.StrictMode>,
   document.getElementById('root')
 );

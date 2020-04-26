@@ -1,0 +1,35 @@
+:root {
+    --card-height: 50px;
+}
+
+.card {
+    border: 1px solid black;
+    display: inline-block;
+    margin: 10px;
+    padding: 0px;
+    list-style-type: none;
+    width: 175px;
+    font-size: 14px;
+    height: var(--card-height);
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+}
+
+.card__front, .card__back {
+    width: 100%;
+    line-height: var(--card-height); 
+}
+
+.card__front {
+    background-color: #ccffcc;
+}
+
+.card__back {
+    background-color: #ffffcc;
+}
+
+.card .hidden {
+    display: none;
+}
+

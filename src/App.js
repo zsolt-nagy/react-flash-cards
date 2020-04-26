@@ -1,26 +1,92 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component, useState, useEffect } from 'react';
 import './App.css';
+import AppHeader from './components/AppHeader/AppHeader';
+import CardList from './components/CardList/CardList';
+import CardsForm from './components/CardsForm/CardsForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const cardData = [ 
+  {
+    frontSide: '9 * 8',
+    backSide: '72'
+  },
+  {
+    frontSide: '2 ** 8',
+    backSide: '256'
+  },
+  {
+    frontSide: 'rabbit * 8',
+    backSide: 'rabbyte'
+  },
+  {
+    frontSide: '9 * 8',
+    backSide: '72'
+  },
+  {
+    frontSide: '2 ** 8',
+    backSide: '256'
+  },
+  {
+    frontSide: 'rabbit * 8',
+    backSide: 'rabbyte'
+  }   
+];
+
+class App_ClassBased extends Component {
+  state = {
+    cards: []
+  }
+  componentDidMount() {
+    // called when the component first mounts to the DOM 
+    // - data loading, e.g. from APIs (Application Programming Interfaces)
+    // Do not load data inside the constructor! Load data in the componentDidMount
+    fetch( this.props.apiUrl )
+      .then( data => data.json() )
+      .then( countries => {
+          function getNameAndCapital( country ) {
+            return { frontSide: country.name, backSide: country.capital }
+          }
+          const cards = countries.map( getNameAndCapital );
+          this.setState({ cards });
+      } );
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <CardsForm />
+        <AppHeader title="Flash Cards" />
+        <CardList cardData={this.state.cards} />
+      </div>
+    );
+  }
 }
 
-export default App;
+function App_Functional( props ) {
+  const [cards, setCards] = useState([]);
+
+  // functionCallback is called 
+  // 1. componentDidMount()
+  // 2. componentDidUpdate() or componentWillUnmount()
+  useEffect( () => {
+    if ( cards.length === 0 ) {
+      fetch( props.apiUrl )
+      .then( data => data.json() )
+      .then( countries => {
+          function getNameAndCapital( country ) {
+            return { frontSide: country.name, backSide: country.capital }
+          }
+          const cards = countries.map( getNameAndCapital );
+          setCards(cards);
+      } );
+    } 
+  } );
+  return (
+    <div className="App">
+      <CardsForm />
+      <AppHeader title="Flash Cards" />
+      <CardList cardData={cards} />
+    </div>
+  );  
+}
+
+export default App_Functional;

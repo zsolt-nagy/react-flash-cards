@@ -77,11 +77,16 @@ function App_Functional( props ) {
       );
     }
   }
+  function deleteItem(id) {
+    setCards( previousCards => 
+      previousCards.filter( card => card.id !== id )
+    );
+  }
   return (
     <div className="App">
       <AppHeader title="Flash Cards" />
       <CardsForm addItem={addItem} />
-      <CardList cardData={cards} />
+      <CardList cardData={cards} deleteItem={deleteItem} />
     </div>
   );  
 }

@@ -44,12 +44,15 @@ class Card_ClassBased extends React.Component {
 }
 
 
-const Card_Functional = function({ frontSide, backSide }) {
+const Card_Functional = function({ frontSide, backSide, id, deleteItem }) {
     // State variables
     const [isFront, changeFace] = React.useState(true);
     // Event handlers
     function handleClick() {
         changeFace(oldValue => !oldValue);
+    }
+    function handleDelete() {
+        deleteItem(id);
     }
     const frontClassList = `card__text ${(isFront ? "" : "hidden")}`;
     const backClassList = `card__text ${isFront ? "hidden" : ""}`;
@@ -62,6 +65,9 @@ const Card_Functional = function({ frontSide, backSide }) {
             <div className={backClassList}>
                 {backSide}
             </div>
+            <a href="javascript:void(0)" 
+               className="card__delete"
+               onClick={handleDelete}>X</a>
         </div>  
     );
 }

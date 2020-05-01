@@ -80,7 +80,6 @@ function App_Functional( props ) {
   } );
   return (
     <div className="App">
-      <CardsForm />
       <AppHeader title="Flash Cards" />
       <CardList cardData={cards} />
     </div>

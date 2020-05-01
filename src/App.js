@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import './App.css';
 import AppHeader from './components/AppHeader/AppHeader';
 import CardList from './components/CardList/CardList';
+import CardsForm from './components/CardsForm/CardsForm';
 
 const cardData = [ 
   {
@@ -53,6 +54,7 @@ class App_ClassBased extends Component {
     return (
       <div className="App">
         <AppHeader title="Flash Cards" />
+        <CardsForm />        
         <CardList cardData={this.state.cards} />
       </div>
     );
@@ -81,6 +83,7 @@ function App_Functional( props ) {
   return (
     <div className="App">
       <AppHeader title="Flash Cards" />
+      <CardsForm />
       <CardList cardData={cards} />
     </div>
   );  

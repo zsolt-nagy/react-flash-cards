@@ -80,10 +80,19 @@ function App_Functional( props ) {
       } );
     } 
   } );
+  function addItem(frontSide, backSide) { 
+    if ( typeof cards.find( card => card.frontSide == frontSide ) !== 'undefined' ) {
+      alert('The front side has to be unique. Card was not added');
+    } else {
+      setCards( previousCards => 
+        [{frontSide, backSide}, ...previousCards] 
+      );
+    }
+  }
   return (
     <div className="App">
       <AppHeader title="Flash Cards" />
-      <CardsForm />
+      <CardsForm addItem={addItem} />
       <CardList cardData={cards} />
     </div>
   );  

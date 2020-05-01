@@ -12,7 +12,7 @@ function CardsForm(props) {
     }
     function handleSubmit(e) {
         e.preventDefault(); 
-        alert( `${frontSide} ${backSide}` );
+        props.addItem(frontSide, backSide);
     }
     return (
         <form action="#" onSubmit={handleSubmit} className="form-container">

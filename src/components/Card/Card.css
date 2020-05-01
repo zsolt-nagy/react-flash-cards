@@ -1,24 +1,33 @@
 :root {
-    --card-height: 50px;
+    --card-width: 225px;
+    --card-height:125px;
+    --card-font-size: 16px;
 }
 
 .card {
-    border: 1px solid black;
-    display: inline-block;
+    border: 3px double darkgreen;
+    border-radius: 0 6px;
     margin: 10px;
     padding: 0px;
-    list-style-type: none;
-    width: 175px;
-    font-size: 14px;
+    width: var(--card-width);
+    font-size: var(--card-font-size);
     height: var(--card-height);
     cursor: pointer;
     user-select: none;
-    overflow: hidden;
+    vertical-align: -webkit-baseline-middle;
+    box-shadow: 0 5px 10px 0 rgba(4, 53, 24, 0.2);
+    display: flex;
+    align-items: center;
 }
 
-.card__front, .card__back {
+.card:hover {
+    box-shadow: 0 5px 10px 0 rgba(4, 53, 24, 0.4);
+}
+
+.card__text {
     width: 100%;
-    line-height: var(--card-height); 
+    line-height: var(--card-font-size);
+    padding: 10px;
 }
 
 .card__front {

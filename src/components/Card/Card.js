@@ -51,12 +51,17 @@ const Card_Functional = function({ frontSide, backSide }) {
     function handleClick() {
         changeFace(oldValue => !oldValue);
     }
-    const frontClassList = `card__front ${(isFront ? "" : "hidden")}`;
-    const backClassList = `card__back ${isFront ? "hidden" : ""}`;
+    const frontClassList = `card__text ${(isFront ? "" : "hidden")}`;
+    const backClassList = `card__text ${isFront ? "hidden" : ""}`;
+    const cardClassList = `card  ${isFront ? 'card__front' : 'card__back'}`;
     return ( 
-        <div className="card" onClick={handleClick}>
-            <div className={frontClassList}>{frontSide}</div>
-            <div className={backClassList}>{backSide}</div>
+        <div className={cardClassList} onClick={handleClick}>
+            <div className={frontClassList}>
+                {frontSide}
+            </div>
+            <div className={backClassList}>
+                {backSide}
+            </div>
         </div>  
     );
 }

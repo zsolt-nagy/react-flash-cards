@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect } from 'react';
 import './App.css';
 import AppHeader from './components/AppHeader/AppHeader';
 import CardList from './components/CardList/CardList';
-import CardsForm from './components/CardsForm/CardsForm';
 
 const cardData = [ 
   {
@@ -53,7 +52,6 @@ class App_ClassBased extends Component {
   render() {
     return (
       <div className="App">
-        <CardsForm />
         <AppHeader title="Flash Cards" />
         <CardList cardData={this.state.cards} />
       </div>

@@ -4,32 +4,7 @@ import AppHeader from './components/AppHeader/AppHeader';
 import CardList from './components/CardList/CardList';
 import CardsForm from './components/CardsForm/CardsForm';
 
-const cardData = [ 
-  {
-    frontSide: '9 * 8',
-    backSide: '72'
-  },
-  {
-    frontSide: '2 ** 8',
-    backSide: '256'
-  },
-  {
-    frontSide: 'rabbit * 8',
-    backSide: 'rabbyte'
-  },
-  {
-    frontSide: '9 * 8',
-    backSide: '72'
-  },
-  {
-    frontSide: '2 ** 8',
-    backSide: '256'
-  },
-  {
-    frontSide: 'rabbit * 8',
-    backSide: 'rabbyte'
-  }   
-];
+import { v4 as uuidv4 } from 'uuid';
 
 class App_ClassBased extends Component {
   state = {
@@ -43,7 +18,11 @@ class App_ClassBased extends Component {
       .then( data => data.json() )
       .then( countries => {
           function getNameAndCapital( country ) {
-            return { frontSide: country.name, backSide: country.capital }
+            return { 
+              frontSide: country.name, 
+              backSide: country.capital,
+              id: uuidv4() 
+            }
           }
           const cards = countries.map( getNameAndCapital );
           this.setState({ cards });
@@ -73,7 +52,11 @@ function App_Functional( props ) {
       .then( data => data.json() )
       .then( countries => {
           function getNameAndCapital( country ) {
-            return { frontSide: country.name, backSide: country.capital }
+            return { 
+              frontSide: country.name, 
+              backSide: country.capital,
+              id: uuidv4()  
+            }
           }
           const cards = countries.map( getNameAndCapital );
           setCards(cards);
@@ -84,8 +67,13 @@ function App_Functional( props ) {
     if ( typeof cards.find( card => card.frontSide == frontSide ) !== 'undefined' ) {
       alert('The front side has to be unique. Card was not added');
     } else {
+      const newItem = { 
+        frontSide, 
+        backSide, 
+        id: uuidv4() 
+      }
       setCards( previousCards => 
-        [{frontSide, backSide}, ...previousCards] 
+        [newItem, ...previousCards] 
       );
     }
   }
